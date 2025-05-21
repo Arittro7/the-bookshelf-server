@@ -2,7 +2,7 @@ const express = require('express');
 const { postBook, getBooks, getSingleBook, updateBook, deleteBook } = require('./book.controller');
 const router = express.Router()
 
-// Post a book
+// Post a book    --------------> Admin only
 router.post("/create-book", postBook)
 
 // GET ALL BOOKS
@@ -11,10 +11,10 @@ router.get('/', getBooks)
 // get single Book
 router.get('/:id', getSingleBook)
 
-// updating book
+// updating book  --------------> Admin only
 router.put("/update/:id" , updateBook)
 
-// delete book
+// delete book    --------------> Admin only
 router.delete("/:id", deleteBook)
 
 module.exports = router
