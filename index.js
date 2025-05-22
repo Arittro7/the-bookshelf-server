@@ -8,7 +8,9 @@ const cors = require("cors")
 // middleware
 app.use(express.json())
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: ['http://localhost:5173',
+    'https://thebook-shelf.netlify.app',
+  ],
   credentials: true
 }))
 
@@ -16,7 +18,6 @@ app.use(cors({
 const bookRoutes = require('./src/books/book.route')
 const orderRoutes = require('./src/orders/order.route')
 const userRoutes = require('./src/users/user.route')
-// const adminRoutes = require('./src/Stats/adminStats')
 const adminRoutes = require('./src/Stats/admin.stats')
 
 app.use("/api/books", bookRoutes)
