@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-const JWT_ACCESS_TOKEN = process.env.JWT_SECRET_KEY
+const JWT_SECRET = process.env.JWT_SECRET_KEY
 
 router.post("/admin", async (req, res) => {
   const { username, password} = req.body;
@@ -13,12 +13,12 @@ router.post("/admin", async (req, res) => {
     if (!admin) {
       res.status(404).json({ message: "Admin not found" });
     }
-    if (admin.password !== password) {
+    if (admin.password !== password) {         
       res.status(401).json({ message: "Invalid Password" });
     }
 
     const token = jwt.sign({ id: admin._id, username: admin.username, role: admin.role },
-      JWT_ACCESS_TOKEN,
+      JWT_SECRET,
       {expiresIn: "1h"}
     )
 

@@ -1,6 +1,7 @@
 const express = require('express');
-const { postBook, getBooks, getSingleBook, updateBook, deleteBook } = require('./book.controller');
+const {  getBooks, getSingleBook, updateBook, deleteBook, postBook } = require('./book.controller');
 const verifyAdminToken = require('../middleware/verifyAdminToken')
+const Book = require ('./book.model.js')
 
 const router = express.Router()
 
@@ -14,7 +15,7 @@ router.get('/', getBooks)
 router.get('/:id', getSingleBook)
 
 // updating book  --------------> Admin only
-router.put("/update/:id" ,verifyAdminToken , updateBook)
+router.put("/edit/:id" ,verifyAdminToken , updateBook)
 
 // delete book    --------------> Admin only 
 router.delete("/:id", verifyAdminToken, deleteBook)
